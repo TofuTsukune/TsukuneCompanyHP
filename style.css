@@ -151,7 +151,7 @@ img { max-width: 100%; }
   align-items: center;
   gap: 6px;
 }
-.logo-tofu { color: var(--text); }
+.logo-tofu { color: var(--text); font-weight: 900; }
 .logo-tsukune { color: var(--accent2); }
 .logo-badge {
   font-size: 0.55rem;
