@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TofuTsukune Inc. | AI × IT で未来を耕す</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-tofu">Tofu</span><span class="logo-tsukune">Tsukune</span>
+        <span class="logo-badge">AI / IT</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#products">製品</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#about">会社概要</a></li>
+        <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Next-Generation AI Company</p>
+      <h1 class="hero-title">
+        技術で、<br />
+        <span class="gradient-text">未来を耕す。</span>
+      </h1>
+      <p class="hero-sub">
+        TofuTsukune は AI と IT の力で、<br class="br-sp" />
+        人とビジネスの可能性を最大化します。
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary">製品を見る</a>
+        <a href="#contact" class="btn btn-ghost">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item" data-count="98">
+        <span class="stat-num"><span class="counter">0</span>%</span>
+        <span class="stat-label">顧客満足度</span>
+      </div>
+      <div class="stat-item" data-count="500">
+        <span class="stat-num"><span class="counter">0</span>+</span>
+        <span class="stat-label">導入企業</span>
+      </div>
+      <div class="stat-item" data-count="50">
+        <span class="stat-num"><span class="counter">0</span>+</span>
+        <span class="stat-label">AIモデル</span>
+      </div>
+      <div class="stat-item" data-count="24">
+        <span class="stat-num"><span class="counter">0</span>h</span>
+        <span class="stat-label">サポート対応</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">OUR PRODUCT</p>
+        <h2 class="section-title">主力製品</h2>
+        <p class="section-desc">
+          農業×AI という新たなフロンティアで、<br />
+          生産者の未来を切り拓く旗艦プロダクト。
+        </p>
+      </div>
+
+      <div class="product-showcase">
+        <div class="product-visual">
+          <div class="product-glow"></div>
+          <div class="product-card-3d">
+            <div class="product-icon-wrap">
+              <!-- Hatakeru grid map icon -->
+              <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="product-svg">
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#6c63ff"/>
+                    <stop offset="100%" stop-color="#00f5c4"/>
+                  </linearGradient>
+                  <linearGradient id="g2" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#4ade80"/>
+                    <stop offset="100%" stop-color="#00f5c4"/>
+                  </linearGradient>
+                  <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#facc15"/>
+                  </linearGradient>
+                </defs>
+                <!-- Grid cells (畑マップ) -->
+                <!-- Row A -->
+                <rect x="12" y="20" width="26" height="22" rx="4" fill="url(#g2)" opacity="0.85"/>
+                <rect x="42" y="20" width="26" height="22" rx="4" fill="url(#g2)" opacity="0.55"/>
+                <rect x="72" y="20" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Row B -->
+                <rect x="12" y="46" width="26" height="22" rx="4" fill="url(#g1)" opacity="0.6"/>
+                <rect x="42" y="46" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <rect x="72" y="46" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Row C -->
+                <rect x="12" y="72" width="26" height="22" rx="4" fill="url(#g3)" opacity="0.7"/>
+                <rect x="42" y="72" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <rect x="72" y="72" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Sprout icons in filled cells -->
+                <text x="25" y="35" text-anchor="middle" font-size="10">🌱</text>
+                <text x="55" y="35" text-anchor="middle" font-size="10">🌱</text>
+                <text x="25" y="61" text-anchor="middle" font-size="10">🥬</text>
+                <text x="25" y="87" text-anchor="middle" font-size="10">🥔</text>
+                <!-- Plus icons in empty cells -->
+                <text x="85" y="35" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="55" y="61" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="85" y="61" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="55" y="87" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="85" y="87" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <!-- Label -->
+                <text x="60" y="108" text-anchor="middle" font-size="8" fill="url(#g2)" font-weight="bold" letter-spacing="1">畑マップ</text>
+              </svg>
+            </div>
+            <div class="product-badge-chip">主力製品</div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h3 class="product-name">ハタケル</h3>
+          <p class="product-tagline">家庭菜園・市民農園の、すべてをここで。</p>
+          <p class="product-desc">
+            ハタケルは、家庭菜園や市民農園向けの畑管理ウェブアプリです。
+            グリッドで区画を可視化し、作物の栽培記録・作業ログ・
+            カレンダー・写真をまとめて管理。インストール不要、
+            サーバー不要でブラウザからすぐ使えます。
+          </p>
+          <ul class="product-features">
+            <li>
+              <span class="feat-icon">📍</span>
+              <div>
+                <strong>畑マップ</strong>
+                <span>グリッドで区画を可視化。作物・植付け日・収穫予定日を区画ごとに管理</span>
+              </div>
+            </li>
+            <li>
+              <span class="feat-icon">🥬</span>
+              <div>
+                <strong>作物管理</strong>
+                <span>作物マスタを登録・編集。予定／栽培中／収穫済みのステータス管理</span>
+              </div>
+            </li>
+            <li>
+              <span class="feat-icon">📋</span>
+              <div>
+                <strong>作業ログ</strong>
+                <span>水やり・施肥・収穫などの作業を記録。収穫量・費用も管理</span>
+              </div>
+            </li>
+            <li>
+              <span class="feat-icon">📅</span>
+              <div>
+                <strong>カレンダー・写真</strong>
+                <span>植付け・収穫予定をカレンダーで確認。成長の様子を写真で記録</span>
+              </div>
+            </li>
+          </ul>
+          <div class="product-tech-chips">
+            <span>React 18</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS v4</span>
+            <span>インストール不要</span>
+          </div>
+          <a href="https://tofutsukune.github.io/hatakeru/" target="_blank" rel="noopener" class="btn btn-primary">
+            ハタケルを試してみる →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">SERVICES</p>
+        <h2 class="section-title">サービス一覧</h2>
+        <p class="section-desc">
+          AI開発からシステム構築まで、<br />
+          ワンストップでご支援します。
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" data-delay="0">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si1)" opacity="0.15"/><path d="M16 24l4 4 12-12" stroke="url(#si1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 8a16 16 0 1 1 0 32A16 16 0 0 1 24 8z" stroke="url(#si1)" stroke-width="1.5" opacity="0.4"/><defs><linearGradient id="si1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6c63ff"/><stop offset="1" stop-color="#00f5c4"/></linearGradient></defs></svg>
+          </div>
+          <h4>AIソリューション開発</h4>
+          <p>業務課題に特化したAIモデルをゼロから設計・開発。データ収集から本番運用まで一貫サポート。</p>
+        </div>
+        <div class="service-card" data-delay="100">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si2)" opacity="0.15"/><rect x="14" y="18" width="20" height="14" rx="3" stroke="url(#si2)" stroke-width="1.5"/><path d="M20 18v-3a4 4 0 0 1 8 0v3" stroke="url(#si2)" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="25" r="2" fill="url(#si2)"/><defs><linearGradient id="si2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f97316"/><stop offset="1" stop-color="#facc15"/></linearGradient></defs></svg>
+          </div>
+          <h4>クラウド・インフラ構築</h4>
+          <p>AWS / GCP / Azure を活用したスケーラブルなインフラ設計。セキュリティと可用性を両立。</p>
+        </div>
+        <div class="service-card" data-delay="200">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si3)" opacity="0.15"/><path d="M24 14v4M24 30v4M14 24h4M30 24h4" stroke="url(#si3)" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="url(#si3)" stroke-width="1.5"/><defs><linearGradient id="si3" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ec4899"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs></svg>
+          </div>
+          <h4>データ分析・BI</h4>
+          <p>散在するデータを統合・可視化。意思決定を加速するダッシュボードとレポートを提供。</p>
+        </div>
+        <div class="service-card" data-delay="300">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si4)" opacity="0.15"/><path d="M18 24l3 3 9-9" stroke="url(#si4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="12" y="12" width="24" height="24" rx="4" stroke="url(#si4)" stroke-width="1.5"/><defs><linearGradient id="si4" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#6c63ff"/></linearGradient></defs></svg>
+          </div>
+          <h4>DXコンサルティング</h4>
+          <p>業務プロセスの棚卸しから、最適なデジタル化ロードマップの策定・実行支援まで。</p>
+        </div>
+        <div class="service-card" data-delay="400">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si5)" opacity="0.15"/><path d="M20 16h-4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V18a2 2 0 0 0-2-2h-4M20 16V13a4 4 0 0 1 8 0v3M20 16h8" stroke="url(#si5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="si5" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs></svg>
+          </div>
+          <h4>SaaS・プロダクト開発</h4>
+          <p>アイデアを素早くプロダクトへ。アジャイル開発でMVPから大規模SaaSまで対応。</p>
+        </div>
+        <div class="service-card" data-delay="500">
+          <div class="service-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="url(#si6)" opacity="0.15"/><circle cx="24" cy="20" r="5" stroke="url(#si6)" stroke-width="1.5"/><path d="M14 36c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="url(#si6)" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="si6" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs></svg>
+          </div>
+          <h4>AIトレーニング・研修</h4>
+          <p>生成AI活用ワークショップから、エンジニア向け機械学習研修まで、組織のAIリテラシーを底上げ。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology -->
+  <section id="technology">
+    <div class="container">
+      <div class="tech-inner">
+        <div class="tech-text">
+          <p class="section-eyebrow">TECHNOLOGY</p>
+          <h2 class="section-title left">最先端技術で<br />課題を解決</h2>
+          <p class="section-desc left">
+            最新のLLM・コンピュータビジョン・エッジAI技術を組み合わせ、
+            実業務に即したソリューションを提供します。
+          </p>
+          <div class="tech-tags">
+            <span>Large Language Models</span>
+            <span>Computer Vision</span>
+            <span>Edge AI</span>
+            <span>MLOps</span>
+            <span>RAG</span>
+            <span>Fine-tuning</span>
+            <span>IoT Integration</span>
+            <span>Real-time Analytics</span>
+          </div>
+        </div>
+        <div class="tech-visual">
+          <div class="orbit-container">
+            <div class="orbit orbit-1">
+              <div class="orbit-dot" style="--angle:0deg"><span>LLM</span></div>
+              <div class="orbit-dot" style="--angle:120deg"><span>CV</span></div>
+              <div class="orbit-dot" style="--angle:240deg"><span>NLP</span></div>
+            </div>
+            <div class="orbit orbit-2">
+              <div class="orbit-dot" style="--angle:60deg"><span>IoT</span></div>
+              <div class="orbit-dot" style="--angle:180deg"><span>Cloud</span></div>
+              <div class="orbit-dot" style="--angle:300deg"><span>Edge</span></div>
+            </div>
+            <div class="orbit-center">
+              <span>AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">ABOUT US</p>
+        <h2 class="section-title">会社概要</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card mission">
+          <h4>ミッション</h4>
+          <p>「技術の力で、すべての人が可能性を耕せる世界をつくる」</p>
+        </div>
+        <div class="about-card vision">
+          <h4>ビジョン</h4>
+          <p>シンプルで使いやすいプロダクトを通じて、人々の日常をより豊かにする</p>
+        </div>
+        <div class="about-card values">
+          <h4>バリュー</h4>
+          <ul>
+            <li>🌱 耕す — 挑戦し、成長し続ける</li>
+            <li>🤝 共創 — ユーザーと共に育てるプロダクト</li>
+            <li>🔬 誠実 — シンプルで誠実な設計</li>
+          </ul>
+        </div>
+        <div class="about-table-wrap">
+          <table class="about-table">
+            <tr><th>会社名</th><td>株式会社 TofuTsukune（とうふつくね）</td></tr>
+            <tr><th>事業内容</th><td>Webアプリ開発・SaaS提供・ITコンサルティング</td></tr>
+            <tr><th>主要製品</th><td>ハタケル（家庭菜園・市民農園向け畑管理アプリ）</td></tr>
+            <tr><th>技術スタック</th><td>React / TypeScript / Tailwind CSS / Vite</td></tr>
+            <tr><th>所在地</th><td>日本</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-glow"></div>
+        <p class="section-eyebrow white">CONTACT</p>
+        <h2 class="cta-title">一緒に、未来を耕しませんか？</h2>
+        <p class="cta-desc">
+          製品のご紹介・ご相談・資料請求など、<br />
+          お気軽にお問い合わせください。
+        </p>
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <input type="text" placeholder="お名前 *" required />
+            <input type="email" placeholder="メールアドレス *" required />
+          </div>
+          <input type="text" placeholder="会社名" />
+          <select>
+            <option value="" disabled selected>お問い合わせ種別</option>
+            <option>ハタケルについて</option>
+            <option>AIソリューション開発</option>
+            <option>DXコンサルティング</option>
+            <option>その他</option>
+          </select>
+          <textarea placeholder="お問い合わせ内容 *" rows="4" required></textarea>
+          <button type="submit" class="btn btn-primary full">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-tofu">Tofu</span><span class="logo-tsukune">Tsukune</span>
+          </a>
+          <p>AI × IT で未来を耕す</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>製品</h5>
+            <a href="https://tofutsukune.github.io/hatakeru/" target="_blank" rel="noopener">ハタケル</a>
+          </div>
+          <div class="footer-col">
+            <h5>サービス</h5>
+            <a href="#services">AI開発</a>
+            <a href="#services">クラウド構築</a>
+            <a href="#services">DXコンサル</a>
+          </div>
+          <div class="footer-col">
+            <h5>会社</h5>
+            <a href="#about">会社概要</a>
+            <a href="#contact">お問い合わせ</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 TofuTsukune Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
