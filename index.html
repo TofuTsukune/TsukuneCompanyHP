@@ -92,26 +92,8 @@
           <div class="product-glow"></div>
           <div class="product-card-3d">
             <div class="product-icon-wrap">
+              <!-- Hatakeru grid map icon -->
               <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="product-svg">
-                <!-- Field rows -->
-                <rect x="10" y="70" width="100" height="6" rx="3" fill="url(#g1)" opacity="0.3"/>
-                <rect x="10" y="82" width="100" height="6" rx="3" fill="url(#g1)" opacity="0.5"/>
-                <rect x="10" y="94" width="100" height="6" rx="3" fill="url(#g1)" opacity="0.7"/>
-                <!-- Plant sprout -->
-                <path d="M60 68 Q60 50 45 40" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <path d="M60 68 Q60 50 75 40" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <path d="M60 68 V 30" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <!-- Leaves -->
-                <ellipse cx="45" cy="40" rx="10" ry="5" fill="url(#g2)" transform="rotate(-30 45 40)"/>
-                <ellipse cx="75" cy="40" rx="10" ry="5" fill="url(#g2)" transform="rotate(30 75 40)"/>
-                <ellipse cx="60" cy="28" rx="10" ry="5" fill="url(#g2)"/>
-                <!-- Data dots -->
-                <circle cx="25" cy="30" r="3" fill="#00f5c4" opacity="0.8"/>
-                <circle cx="95" cy="25" r="3" fill="#00f5c4" opacity="0.8"/>
-                <circle cx="20" cy="55" r="2" fill="#6c63ff" opacity="0.6"/>
-                <circle cx="100" cy="50" r="2" fill="#6c63ff" opacity="0.6"/>
-                <!-- WiFi/Signal arc -->
-                <path d="M 40 22 Q 60 10 80 22" stroke="#00f5c4" stroke-width="1.5" fill="none" opacity="0.6" stroke-dasharray="4 2"/>
                 <defs>
                   <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stop-color="#6c63ff"/>
@@ -121,7 +103,37 @@
                     <stop offset="0%" stop-color="#4ade80"/>
                     <stop offset="100%" stop-color="#00f5c4"/>
                   </linearGradient>
+                  <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f97316"/>
+                    <stop offset="100%" stop-color="#facc15"/>
+                  </linearGradient>
                 </defs>
+                <!-- Grid cells (畑マップ) -->
+                <!-- Row A -->
+                <rect x="12" y="20" width="26" height="22" rx="4" fill="url(#g2)" opacity="0.85"/>
+                <rect x="42" y="20" width="26" height="22" rx="4" fill="url(#g2)" opacity="0.55"/>
+                <rect x="72" y="20" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Row B -->
+                <rect x="12" y="46" width="26" height="22" rx="4" fill="url(#g1)" opacity="0.6"/>
+                <rect x="42" y="46" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <rect x="72" y="46" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Row C -->
+                <rect x="12" y="72" width="26" height="22" rx="4" fill="url(#g3)" opacity="0.7"/>
+                <rect x="42" y="72" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <rect x="72" y="72" width="26" height="22" rx="4" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <!-- Sprout icons in filled cells -->
+                <text x="25" y="35" text-anchor="middle" font-size="10">🌱</text>
+                <text x="55" y="35" text-anchor="middle" font-size="10">🌱</text>
+                <text x="25" y="61" text-anchor="middle" font-size="10">🥬</text>
+                <text x="25" y="87" text-anchor="middle" font-size="10">🥔</text>
+                <!-- Plus icons in empty cells -->
+                <text x="85" y="35" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="55" y="61" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="85" y="61" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="55" y="87" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <text x="85" y="87" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.2)">+</text>
+                <!-- Label -->
+                <text x="60" y="108" text-anchor="middle" font-size="8" fill="url(#g2)" font-weight="bold" letter-spacing="1">畑マップ</text>
               </svg>
             </div>
             <div class="product-badge-chip">主力製品</div>
@@ -130,45 +142,51 @@
 
         <div class="product-info">
           <h3 class="product-name">ハタケル</h3>
-          <p class="product-tagline">農業の「わからない」を、AIが解決する。</p>
+          <p class="product-tagline">家庭菜園・市民農園の、すべてをここで。</p>
           <p class="product-desc">
-            ハタケルは、農業現場に特化したAIソリューションです。
-            土壌・気象・生育データをリアルタイムに解析し、
-            最適な栽培管理をサポート。経験の浅い生産者でも、
-            ベテランの知見をAIが補完します。
+            ハタケルは、家庭菜園や市民農園向けの畑管理ウェブアプリです。
+            グリッドで区画を可視化し、作物の栽培記録・作業ログ・
+            カレンダー・写真をまとめて管理。インストール不要、
+            サーバー不要でブラウザからすぐ使えます。
           </p>
           <ul class="product-features">
             <li>
-              <span class="feat-icon">🌱</span>
+              <span class="feat-icon">📍</span>
               <div>
-                <strong>AI生育診断</strong>
-                <span>画像認識で病害虫・生育状況を即時判定</span>
+                <strong>畑マップ</strong>
+                <span>グリッドで区画を可視化。作物・植付け日・収穫予定日を区画ごとに管理</span>
               </div>
             </li>
             <li>
-              <span class="feat-icon">📡</span>
+              <span class="feat-icon">🥬</span>
               <div>
-                <strong>IoTセンサー連携</strong>
-                <span>圃場データを24時間クラウドに収集・分析</span>
+                <strong>作物管理</strong>
+                <span>作物マスタを登録・編集。予定／栽培中／収穫済みのステータス管理</span>
               </div>
             </li>
             <li>
-              <span class="feat-icon">📊</span>
+              <span class="feat-icon">📋</span>
               <div>
-                <strong>収量予測</strong>
-                <span>機械学習モデルによる高精度な収穫量シミュレーション</span>
+                <strong>作業ログ</strong>
+                <span>水やり・施肥・収穫などの作業を記録。収穫量・費用も管理</span>
               </div>
             </li>
             <li>
-              <span class="feat-icon">💬</span>
+              <span class="feat-icon">📅</span>
               <div>
-                <strong>AIアドバイザー</strong>
-                <span>自然言語で農業の疑問にチャット形式で回答</span>
+                <strong>カレンダー・写真</strong>
+                <span>植付け・収穫予定をカレンダーで確認。成長の様子を写真で記録</span>
               </div>
             </li>
           </ul>
+          <div class="product-tech-chips">
+            <span>React 18</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS v4</span>
+            <span>インストール不要</span>
+          </div>
           <a href="https://tofutsukune.github.io/hatakeru/" target="_blank" rel="noopener" class="btn btn-primary">
-            ハタケルを詳しく見る →
+            ハタケルを試してみる →
           </a>
         </div>
       </div>
@@ -291,22 +309,22 @@
         </div>
         <div class="about-card vision">
           <h4>ビジョン</h4>
-          <p>AIを民主化し、あらゆる産業のデジタル変革をリードする</p>
+          <p>シンプルで使いやすいプロダクトを通じて、人々の日常をより豊かにする</p>
         </div>
         <div class="about-card values">
           <h4>バリュー</h4>
           <ul>
             <li>🌱 耕す — 挑戦し、成長し続ける</li>
-            <li>🤝 共創 — お客様と共に未来を描く</li>
-            <li>🔬 誠実 — データと事実に基づく判断</li>
+            <li>🤝 共創 — ユーザーと共に育てるプロダクト</li>
+            <li>🔬 誠実 — シンプルで誠実な設計</li>
           </ul>
         </div>
         <div class="about-table-wrap">
           <table class="about-table">
             <tr><th>会社名</th><td>株式会社 TofuTsukune（とうふつくね）</td></tr>
-            <tr><th>設立</th><td>2022年</td></tr>
-            <tr><th>事業内容</th><td>AIソリューション開発・SaaS提供・ITコンサルティング</td></tr>
-            <tr><th>主要製品</th><td>ハタケル（農業AI SaaS）</td></tr>
+            <tr><th>事業内容</th><td>Webアプリ開発・SaaS提供・ITコンサルティング</td></tr>
+            <tr><th>主要製品</th><td>ハタケル（家庭菜園・市民農園向け畑管理アプリ）</td></tr>
+            <tr><th>技術スタック</th><td>React / TypeScript / Tailwind CSS / Vite</td></tr>
             <tr><th>所在地</th><td>日本</td></tr>
           </table>
         </div>

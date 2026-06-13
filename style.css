@@ -446,6 +446,21 @@ img { max-width: 100%; }
   color: var(--text-muted);
 }
 
+.product-tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.product-tech-chips span {
+  padding: 4px 14px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
 /* ========================
    Services
 ======================== */
