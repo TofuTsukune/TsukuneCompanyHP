@@ -18,7 +18,7 @@ navLinks.querySelectorAll('a').forEach(a => {
 });
 
 /* ========================
-   Hero Canvas — field / farm theme
+   Hero Canvas — soft green field
 ======================== */
 (function initHeroCanvas() {
   const canvas = document.getElementById('hero-canvas');
@@ -32,110 +32,104 @@ navLinks.querySelectorAll('a').forEach(a => {
   resize();
   window.addEventListener('resize', resize);
 
-  // --- Field rows (furrows) ---
-  const ROW_GAP = 56;
-  const FURROW_COLOR = 'rgba(92,184,92,0.06)';
-
-  // --- Grid cells like hatakeru map ---
-  const CELL = 70;
-  const COLS = Math.ceil(window.innerWidth  / CELL) + 2;
-  const ROWS_N = Math.ceil(window.innerHeight / CELL) + 2;
-  const cells = [];
-  const CELL_COLORS = ['#3a7d44','#5cb85c','#a3e635','#c2713a','#6b9e3a'];
-  for (let r = 0; r < ROWS_N; r++) {
-    for (let c = 0; c < COLS; c++) {
-      if (Math.random() < 0.13) {
-        cells.push({
-          cx: c * CELL + Math.random() * 20 - 10,
-          cy: r * CELL + Math.random() * 20 - 10,
-          color: CELL_COLORS[Math.floor(Math.random() * CELL_COLORS.length)],
-          opacity: 0.04 + Math.random() * 0.09,
-          size: 28 + Math.random() * 24,
-          phase: Math.random() * Math.PI * 2,
-          speed: 0.003 + Math.random() * 0.005,
-        });
-      }
-    }
-  }
-
-  // --- Floating seed/pollen particles ---
-  const particles = Array.from({ length: 60 }, () => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    r: 1 + Math.random() * 2,
-    vy: -0.2 - Math.random() * 0.4,
-    vx: (Math.random() - 0.5) * 0.3,
-    opacity: 0.15 + Math.random() * 0.4,
-    color: Math.random() < 0.6 ? '#a3e635' : '#c2713a',
+  // 畑の畝（うね）— 水平のなだらかな波線
+  const FURROW_COUNT = 14;
+  const furrows = Array.from({ length: FURROW_COUNT }, (_, i) => ({
+    yBase: (i + 1) / (FURROW_COUNT + 1),
+    amp:   4 + Math.random() * 6,
+    freq:  0.002 + Math.random() * 0.002,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.003 + Math.random() * 0.003,
+    alpha: 0.10 + Math.random() * 0.12,
+    width: 1.5 + Math.random(),
+    color: Math.random() < 0.5 ? '#6dbf6d' : '#8bc34a',
   }));
 
-  // --- Glowing orbs (sunlight patches) ---
-  const orbs = [
-    { x: 0.2, y: 0.3, r: 280, color: '#3a7d44', op: 0.12 },
-    { x: 0.8, y: 0.6, r: 220, color: '#a3e635', op: 0.08 },
-    { x: 0.5, y: 0.1, r: 350, color: '#5cb85c', op: 0.07 },
-    { x: 0.1, y: 0.8, r: 200, color: '#c2713a', op: 0.06 },
+  // ゆっくり流れる葉っぱ・タネ
+  function makeLeaf() {
+    return {
+      x:   Math.random() * W,
+      y:   H + 20,
+      size: 4 + Math.random() * 7,
+      vx:  (Math.random() - 0.5) * 0.6,
+      vy:  -(0.4 + Math.random() * 0.5),
+      rot:  Math.random() * Math.PI * 2,
+      vrot: (Math.random() - 0.5) * 0.015,
+      opacity: 0.25 + Math.random() * 0.35,
+      hue:  100 + Math.random() * 50,
+    };
+  }
+  const leaves = Array.from({ length: 28 }, () => {
+    const l = makeLeaf();
+    l.y = Math.random() * H;
+    return l;
+  });
+
+  // ふわっとした光のにじみ（小さく・薄く・暖かい色）
+  const glows = [
+    { rx: 0.15, ry: 0.25, r: 320, h: 110, s: 55, l: 35, a: 0.13 },
+    { rx: 0.85, ry: 0.55, r: 260, h: 90,  s: 50, l: 38, a: 0.10 },
+    { rx: 0.50, ry: 0.80, r: 380, h: 125, s: 45, l: 30, a: 0.09 },
+    { rx: 0.70, ry: 0.15, r: 200, h: 75,  s: 60, l: 40, a: 0.08 },
   ];
 
   let t = 0;
   function draw() {
-    t++;
+    t += 0.5;
     ctx.clearRect(0, 0, W, H);
 
-    // Sky-to-soil gradient background
+    // ── 背景グラデーション（明るい緑〜柔らかい深緑）──
     const bg = ctx.createLinearGradient(0, 0, 0, H);
-    bg.addColorStop(0,   '#0a1a0c');
-    bg.addColorStop(0.6, '#0d1a0f');
-    bg.addColorStop(1,   '#161008');
+    bg.addColorStop(0,   '#1e3d20');   // 上: 少し明るい森の緑
+    bg.addColorStop(0.5, '#162b18');   // 中: 落ち着いた緑
+    bg.addColorStop(1,   '#1a2e14');   // 下: 土混じりの深緑
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, W, H);
 
-    // Sunlight orbs
-    orbs.forEach(o => {
-      const g = ctx.createRadialGradient(o.x*W, o.y*H, 0, o.x*W, o.y*H, o.r);
-      g.addColorStop(0, o.color + Math.round(o.op*255).toString(16).padStart(2,'0'));
-      g.addColorStop(1, 'transparent');
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(o.x*W, o.y*H, o.r, 0, Math.PI*2);
-      ctx.fill();
+    // ── 光のにじみ（大きすぎず、淡く）──
+    glows.forEach(g => {
+      const x = g.rx * W, y = g.ry * H;
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, g.r);
+      const c0 = `hsla(${g.h},${g.s}%,${g.l}%,${g.a})`;
+      grad.addColorStop(0,   c0);
+      grad.addColorStop(0.5, `hsla(${g.h},${g.s}%,${g.l}%,${g.a * 0.3})`);
+      grad.addColorStop(1,   'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
     });
 
-    // Furrow lines (horizontal field rows)
-    ctx.lineWidth = 1;
-    for (let y = 0; y < H; y += ROW_GAP) {
-      ctx.strokeStyle = FURROW_COLOR;
+    // ── 畝の波線 ──
+    furrows.forEach(f => {
+      const y0 = f.yBase * H;
       ctx.beginPath();
-      ctx.moveTo(0, y); ctx.lineTo(W, y);
+      ctx.moveTo(0, y0);
+      for (let x = 0; x <= W; x += 4) {
+        const wave = Math.sin(x * f.freq + t * f.speed + f.phase) * f.amp;
+        ctx.lineTo(x, y0 + wave);
+      }
+      ctx.strokeStyle = f.color;
+      ctx.globalAlpha = f.alpha;
+      ctx.lineWidth = f.width;
       ctx.stroke();
-    }
-    // Thin vertical dividers
-    ctx.strokeStyle = 'rgba(92,184,92,0.03)';
-    for (let x = 0; x < W; x += CELL) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
-    }
-
-    // Pulsing cell highlights (畑マップ区画)
-    cells.forEach(c => {
-      const pulse = Math.sin(t * c.speed + c.phase) * 0.5 + 0.5;
-      ctx.globalAlpha = c.opacity * (0.5 + pulse * 0.5);
-      ctx.fillStyle = c.color;
-      const s = c.size * (0.85 + pulse * 0.15);
-      ctx.beginPath();
-      ctx.roundRect(c.cx - s/2, c.cy - s/2, s, s, 6);
-      ctx.fill();
     });
 
-    // Floating seed particles (drift upward)
-    particles.forEach(p => {
-      p.x += p.vx + Math.sin(t * 0.01 + p.y * 0.02) * 0.2;
-      p.y += p.vy;
-      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
-      ctx.globalAlpha = p.opacity;
-      ctx.fillStyle = p.color;
+    // ── 葉っぱ・タネがふんわり舞う ──
+    leaves.forEach(lf => {
+      lf.x   += lf.vx + Math.sin(t * 0.012 + lf.y * 0.01) * 0.25;
+      lf.y   += lf.vy;
+      lf.rot += lf.vrot;
+      if (lf.y < -30) Object.assign(lf, makeLeaf());
+
+      ctx.save();
+      ctx.translate(lf.x, lf.y);
+      ctx.rotate(lf.rot);
+      ctx.globalAlpha = lf.opacity;
+      ctx.fillStyle = `hsl(${lf.hue},55%,52%)`;
+      // 葉の形（楕円）
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.ellipse(0, 0, lf.size, lf.size * 0.5, 0, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
     });
 
     ctx.globalAlpha = 1;
