@@ -4,14 +4,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:   #0d1a0f;
-  --bg2:  #0f1e11;
-  --bg3:  #132116;
+  --bg:   #162b18;
+  --bg2:  #1a3019;
+  --bg3:  #1e3520;
   --surface: rgba(255,255,255,0.04);
   --surface-hover: rgba(255,255,255,0.08);
   --border: rgba(150,220,120,0.12);
-  --text: #eef5e8;
-  --text-muted: rgba(210,235,190,0.55);
+  --text: #e8f5e0;
+  --text-muted: rgba(200,230,175,0.60);
   --accent:  #5cb85c;
   --accent2: #a3e635;
   --accent3: #c2713a;
