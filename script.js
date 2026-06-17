@@ -18,100 +18,128 @@ navLinks.querySelectorAll('a').forEach(a => {
 });
 
 /* ========================
-   Hero Canvas — floating particles & gradient orbs
+   Hero Canvas — field / farm theme
 ======================== */
 (function initHeroCanvas() {
   const canvas = document.getElementById('hero-canvas');
   const ctx = canvas.getContext('2d');
+  let W, H;
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   }
   resize();
   window.addEventListener('resize', resize);
 
-  const COLORS = ['#6c63ff', '#00f5c4', '#f97316', '#a855f7', '#22d3ee'];
+  // --- Field rows (furrows) ---
+  const ROW_GAP = 56;
+  const FURROW_COLOR = 'rgba(92,184,92,0.06)';
 
-  // Orbs
-  const orbs = Array.from({ length: 5 }, (_, i) => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    r: 150 + Math.random() * 200,
-    color: COLORS[i % COLORS.length],
-    vx: (Math.random() - 0.5) * 0.4,
-    vy: (Math.random() - 0.5) * 0.4,
-    opacity: 0.08 + Math.random() * 0.1,
-  }));
-
-  // Particles
-  const particles = Array.from({ length: 80 }, () => ({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
-    r: 0.5 + Math.random() * 1.5,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3,
-    opacity: 0.3 + Math.random() * 0.5,
-  }));
-
-  // Grid lines
-  function drawGrid() {
-    ctx.strokeStyle = 'rgba(108,99,255,0.04)';
-    ctx.lineWidth = 1;
-    const gap = 60;
-    for (let x = 0; x < canvas.width; x += gap) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
-    }
-    for (let y = 0; y < canvas.height; y += gap) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+  // --- Grid cells like hatakeru map ---
+  const CELL = 70;
+  const COLS = Math.ceil(window.innerWidth  / CELL) + 2;
+  const ROWS_N = Math.ceil(window.innerHeight / CELL) + 2;
+  const cells = [];
+  const CELL_COLORS = ['#3a7d44','#5cb85c','#a3e635','#c2713a','#6b9e3a'];
+  for (let r = 0; r < ROWS_N; r++) {
+    for (let c = 0; c < COLS; c++) {
+      if (Math.random() < 0.13) {
+        cells.push({
+          cx: c * CELL + Math.random() * 20 - 10,
+          cy: r * CELL + Math.random() * 20 - 10,
+          color: CELL_COLORS[Math.floor(Math.random() * CELL_COLORS.length)],
+          opacity: 0.04 + Math.random() * 0.09,
+          size: 28 + Math.random() * 24,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.003 + Math.random() * 0.005,
+        });
+      }
     }
   }
 
-  let raf;
+  // --- Floating seed/pollen particles ---
+  const particles = Array.from({ length: 60 }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    r: 1 + Math.random() * 2,
+    vy: -0.2 - Math.random() * 0.4,
+    vx: (Math.random() - 0.5) * 0.3,
+    opacity: 0.15 + Math.random() * 0.4,
+    color: Math.random() < 0.6 ? '#a3e635' : '#c2713a',
+  }));
+
+  // --- Glowing orbs (sunlight patches) ---
+  const orbs = [
+    { x: 0.2, y: 0.3, r: 280, color: '#3a7d44', op: 0.12 },
+    { x: 0.8, y: 0.6, r: 220, color: '#a3e635', op: 0.08 },
+    { x: 0.5, y: 0.1, r: 350, color: '#5cb85c', op: 0.07 },
+    { x: 0.1, y: 0.8, r: 200, color: '#c2713a', op: 0.06 },
+  ];
+
+  let t = 0;
   function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t++;
+    ctx.clearRect(0, 0, W, H);
 
-    // Background
-    ctx.fillStyle = '#09090f';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Sky-to-soil gradient background
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0,   '#0a1a0c');
+    bg.addColorStop(0.6, '#0d1a0f');
+    bg.addColorStop(1,   '#161008');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
 
-    drawGrid();
-
-    // Orbs
+    // Sunlight orbs
     orbs.forEach(o => {
-      o.x += o.vx; o.y += o.vy;
-      if (o.x < -o.r) o.x = canvas.width + o.r;
-      if (o.x > canvas.width + o.r) o.x = -o.r;
-      if (o.y < -o.r) o.y = canvas.height + o.r;
-      if (o.y > canvas.height + o.r) o.y = -o.r;
-
-      const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r);
-      g.addColorStop(0, o.color + Math.round(o.opacity * 255).toString(16).padStart(2, '0'));
+      const g = ctx.createRadialGradient(o.x*W, o.y*H, 0, o.x*W, o.y*H, o.r);
+      g.addColorStop(0, o.color + Math.round(o.op*255).toString(16).padStart(2,'0'));
       g.addColorStop(1, 'transparent');
       ctx.fillStyle = g;
       ctx.beginPath();
-      ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+      ctx.arc(o.x*W, o.y*H, o.r, 0, Math.PI*2);
       ctx.fill();
     });
 
-    // Particles
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
+    // Furrow lines (horizontal field rows)
+    ctx.lineWidth = 1;
+    for (let y = 0; y < H; y += ROW_GAP) {
+      ctx.strokeStyle = FURROW_COLOR;
+      ctx.beginPath();
+      ctx.moveTo(0, y); ctx.lineTo(W, y);
+      ctx.stroke();
+    }
+    // Thin vertical dividers
+    ctx.strokeStyle = 'rgba(92,184,92,0.03)';
+    for (let x = 0; x < W; x += CELL) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
 
+    // Pulsing cell highlights (畑マップ区画)
+    cells.forEach(c => {
+      const pulse = Math.sin(t * c.speed + c.phase) * 0.5 + 0.5;
+      ctx.globalAlpha = c.opacity * (0.5 + pulse * 0.5);
+      ctx.fillStyle = c.color;
+      const s = c.size * (0.85 + pulse * 0.15);
+      ctx.beginPath();
+      ctx.roundRect(c.cx - s/2, c.cy - s/2, s, s, 6);
+      ctx.fill();
+    });
+
+    // Floating seed particles (drift upward)
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(t * 0.01 + p.y * 0.02) * 0.2;
+      p.y += p.vy;
+      if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
       ctx.globalAlpha = p.opacity;
       ctx.fillStyle = p.color;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
       ctx.fill();
     });
 
     ctx.globalAlpha = 1;
-    raf = requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
   }
 
   draw();
